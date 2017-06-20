@@ -16,6 +16,7 @@ def survey_intro_client_session(data, message, image = None):
 
     result['images'] = image
     result['buttons'] = buttons
+    result['message'] = message
 
     return result
 

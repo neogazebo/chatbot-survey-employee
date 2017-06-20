@@ -29,6 +29,7 @@ intents_available_dict = {
 def dispatch(intent_request):
     logger.debug(
         'dispatch userId={}, intentName={}'.format(intent_request['userId'], intent_request['currentIntent']['name']))
+    logger.debug(intent_request)
 
     session_attributes = intent_request['sessionAttributes'] if intent_request['sessionAttributes'] is not None else {}
     session_attributes.pop('client', None)
@@ -41,11 +42,11 @@ def dispatch(intent_request):
         employee = json.loads('{"name":"febri pratama", "id":1, "company_id":1}')
     # end testing
 
+    if 'name' not in employee:
+        employee = None
+
     intent_name = intent_request['currentIntent']['name']
     curr_intent = intents_available_dict[intent_name]
-
-    logger.debug(curr_intent)
-    logger.debug(employee)
 
     # Dispatch to your bot's intent handlers
     if curr_intent['login']:
