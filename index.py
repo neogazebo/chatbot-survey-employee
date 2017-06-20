@@ -4,6 +4,7 @@ import logging
 import json
 import helper.responseBuilder as RB
 import intent.intro as intro
+import intent.engagement as engagement
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)
@@ -20,7 +21,7 @@ intents_available_dict = {
             'login': True
         },
         'EngagementSurvey': {
-            'handler': 'engagement',
+            'handler': engagement,
             'login': True
         }
     }

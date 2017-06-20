@@ -1,4 +1,4 @@
-def elicit_slot(session_attributes, intent_name, slots, slot_to_elicit, message, response_card):
+def elicit_slot(session_attributes, intent_name, slots, slot_to_elicit, message, response_card=None):
     return {
         'sessionAttributes': session_attributes,
         'dialogAction': {
@@ -68,9 +68,10 @@ def build_response_card(title, subtitle, options):
         }]
     }
 
-def build_validation_result(is_valid, violated_slot, message_content):
+def build_validation_result(is_valid, violated_slot, message_content, client_data=None):
     return {
         'isValid': is_valid,
         'violatedSlot': violated_slot,
-        'message': {'contentType': 'PlainText', 'content': message_content}
+        'message': {'contentType': 'PlainText', 'content': message_content},
+        'client_data': client_data
     }

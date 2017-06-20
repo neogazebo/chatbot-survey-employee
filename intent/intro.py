@@ -1,26 +1,6 @@
 import json
 import helper.responseBuilder as RB
-
-survey_dict = {
-    'EngagementSurvey': {
-        'sort_desc': 'Engagement Surveys'
-    },
-    'LearningDevelopment': {
-        'sort_desc': 'Learning & Development questionnaire'
-    },
-    'TransparencyMentorship': {
-        'sort_desc': 'Transparency & mentorship questionnaire'
-    },
-    'SkillsAssessment': {
-        'sort_desc': 'Skills self assessment'
-    },
-    'InternalReferralSurvey': {
-        'sort_desc': 'Internal referral survey'
-    },
-    'CompanyBenefitsSatisfaction': {
-        'sort_desc': 'Company benefits satisfaction poll'
-    }
-}
+import data.intro as data
 
 def survey_intro_client_session(data, message, image = None):
 
@@ -61,7 +41,7 @@ def dialog(intent_request, employee):
                                validation_result['message'])
 
         if not survey_type:
-            session_attributes['client'] = json.dumps(survey_intro_client_session(survey_dict, 'What kind of survey you want to launch?'))
+            session_attributes['client'] = json.dumps(survey_intro_client_session(data.survey_dict, 'What kind of survey you want to launch?'))
             RB.elicit_slot(session_attributes, intent_request['currentIntent']['name'], slots, 'SurveyTypes', {'contentType': 'PlainText', 'content': 'What kind of survey you want to launch?'}, '')
 
         return RB.delegate(session_attributes, slots)
